@@ -30,18 +30,22 @@ FILES = {
     "plugins/travel-agent/agents/access.md": ".claude/agents/access.md",
     "plugins/travel-agent/skills/start/SKILL.md": ".claude/skills/travel-start/SKILL.md",
     "plugins/travel-agent/skills/reset/SKILL.md": ".claude/skills/travel-reset/SKILL.md",
+    "plugins/travel-agent/skills/report/SKILL.md": ".claude/skills/travel-report/SKILL.md",
 }
 
 # 決まった文字列の置き換え。上から順に、すべてのファイルに当てる。
 REPLACEMENTS = [
     # plugin では展開される変数。プロジェクト用では展開されないので、実際の場所に置き換える
     ("${CLAUDE_PLUGIN_ROOT}/agents/", ".claude/agents/"),
+    ("${CLAUDE_PLUGIN_ROOT}/skills/report/", ".claude/skills/travel-report/"),
     ("${CLAUDE_PLUGIN_DATA}", ".travel-agent"),
     # スキルの呼び名
     ("/travel-agent:start", "/travel-start"),
     ("/travel-agent:reset", "/travel-reset"),
+    ("/travel-agent:report", "/travel-report"),
     ("\nname: start\n", "\nname: travel-start\n"),
     ("\nname: reset\n", "\nname: travel-reset\n"),
+    ("\nname: report\n", "\nname: travel-report\n"),
     # エージェントの呼び名（plugin では「travel-agent:名前」、プロジェクト用では名前だけ）
     ("travel-agent:concierge", "concierge"),
     ("travel-agent:scout", "scout"),
