@@ -1,0 +1,14 @@
+{
+  "name": "travel-agent",
+  "displayName": "travel-agent（宿探し）",
+  "version": "0.1.0",
+  "description": "国内旅行の宿探しを手伝うエージェント。候補と判断材料を、条件・事実・推定と提案に分けて出す。予約と決済はしない。決めるのは人間",
+  "author": {
+    "name": "screana",
+    "url": "https://github.com/screana"
+  },
+  "homepage": "https://github.com/screana/travel-agent-plugin",
+  "repository": "https://github.com/screana/travel-agent-plugin",
+  "license": "MIT",
+  "keywords": ["travel", "japan", "ryokan", "hotel", "japanese"]
+}

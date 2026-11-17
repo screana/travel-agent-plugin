@@ -1,0 +1,16 @@
+{
+  "name": "travel-agent-plugin",
+  "description": "国内旅行の宿探しを手伝う Claude Code plugin「travel-agent」の配布用マーケットプレイス",
+  "owner": {
+    "name": "screana",
+    "url": "https://github.com/screana"
+  },
+  "plugins": [
+    {
+      "name": "travel-agent",
+      "source": "./plugins/travel-agent",
+      "description": "国内旅行の宿探しを手伝うエージェント。候補と判断材料を、条件・事実・推定と提案に分けて出す。決めるのは人間",
+      "category": "travel"
+    }
+  ]
+}

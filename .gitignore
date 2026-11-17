@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.env
+.env.*
+# 旅行の条件や調べた結果は、リポジトリに入れない
+trips/
+.travel-agent/
