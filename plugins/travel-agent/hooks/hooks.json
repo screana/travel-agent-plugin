@@ -1,9 +1,9 @@
 {
-  "description": "調査役（scout / inspector / access）の開始時に、いまの時刻を渡す。調査役は時計を持たず、事実シートの取得時刻（retrieved_at）を書けないため。date コマンドを実行して1行の JSON を出すだけで、ネットワークにもファイルにも触れない",
+  "description": "調査役（scout / inspector / access / planner）の開始時に、いまの時刻を渡す。調査役は時計を持たず、事実シートの取得時刻（retrieved_at）を書けないため。date コマンドを実行して1行の JSON を出すだけで、ネットワークにもファイルにも触れない",
   "hooks": {
     "SubagentStart": [
       {
-        "matcher": ".*(scout|inspector|access)",
+        "matcher": ".*(scout|inspector|access|planner)",
         "hooks": [
           {
             "type": "command",

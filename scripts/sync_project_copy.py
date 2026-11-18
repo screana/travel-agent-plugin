@@ -28,6 +28,7 @@ FILES = {
     "plugins/travel-agent/agents/scout.md": ".claude/agents/scout.md",
     "plugins/travel-agent/agents/inspector.md": ".claude/agents/inspector.md",
     "plugins/travel-agent/agents/access.md": ".claude/agents/access.md",
+    "plugins/travel-agent/agents/planner.md": ".claude/agents/planner.md",
     "plugins/travel-agent/skills/start/SKILL.md": ".claude/skills/travel-start/SKILL.md",
     "plugins/travel-agent/skills/reset/SKILL.md": ".claude/skills/travel-reset/SKILL.md",
     "plugins/travel-agent/skills/report/SKILL.md": ".claude/skills/travel-report/SKILL.md",
@@ -51,6 +52,7 @@ REPLACEMENTS = [
     ("travel-agent:scout", "scout"),
     ("travel-agent:inspector", "inspector"),
     ("travel-agent:access", "access"),
+    ("travel-agent:planner", "planner"),
     # データが消える条件の説明
     (
         "- plugin をアンインストールすると、データフォルダごと消えます。",
