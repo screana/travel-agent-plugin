@@ -1,0 +1,17 @@
+{
+  "description": "調査役（scout / inspector / access）の開始時に、いまの時刻を渡す。調査役は時計を持たず、事実シートの取得時刻（retrieved_at）を書けないため。date コマンドを実行して1行の JSON を出すだけで、ネットワークにもファイルにも触れない",
+  "hooks": {
+    "SubagentStart": [
+      {
+        "matcher": ".*(scout|inspector|access)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '{\"hookSpecificOutput\":{\"hookEventName\":\"SubagentStart\",\"additionalContext\":\"[travel-agent] research started at %s (local clock of this machine). Use it for retrieved_at.\"}}\n' \"$(date +%Y-%m-%dT%H:%M%z)\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

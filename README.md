@@ -4,7 +4,7 @@
 
 宿を決めるのは、あなたと同行者です。この plugin は、決めるための選択肢と判断材料を出します。旅程を細かく組んだり、1軒に決め打ちしたりはしません。**予約と決済もしません。** 予約は、表示されたリンクから、あなた自身が予約サイトで行います。
 
-バージョン 0.1.0 は試作（PoC）です。設計の考え方は [docs/design.md](docs/design.md) にあります。
+バージョン 0.1.0 は試作（PoC）です。設計の考え方は [docs/design.md](docs/design.md) に、レポートを作るまでの手順は [docs/workflow.md](docs/workflow.md) にあります。
 
 ## できること
 
@@ -205,7 +205,8 @@ plugins/travel-agent/               plugin の本体（こちらが正）
   agents/access.md                  交通を調べる
   skills/start/SKILL.md             通常のセッションから始める入口
   skills/reset/SKILL.md             保存したデータを消す
-  skills/report/SKILL.md            レポートを書く手順（テンプレートと点検リスト）
+  skills/report/SKILL.md            レポートを書く手順（テンプレート、検算表、点検リスト）
+  hooks/hooks.json                  調査役の開始時に、いまの時刻を渡す（取得時刻の記録のため）
 .claude/                            クラウド用のコピー（生成物。直接は編集しない）
   agents/{concierge,scout,inspector,access}.md
   skills/travel-start/SKILL.md
@@ -214,9 +215,10 @@ plugins/travel-agent/               plugin の本体（こちらが正）
 scripts/sync_project_copy.py        plugin の定義から .claude/ のコピーを作る
 docs/brief.md                       依頼書
 docs/design.md                      設計書
+docs/workflow.md                    レポートを作るまでの手順書（段階ごとに、誰が何をして、何を保存するか）
 ```
 
-この plugin に、MCP サーバーや、実行時に動くプログラムは含まれていません。エージェントとスキルの定義（Markdown）だけです。`scripts/` のスクリプトは、開発のときにコピーを作るためのものです。
+この plugin に、MCP サーバーは含まれていません。エージェントとスキルの定義（Markdown）と、調査役の開始時に時刻を渡す1行のコマンド（`hooks/hooks.json`）だけです。`scripts/` のスクリプトは、開発のときにコピーを作るためのものです。
 
 ### 定義を直すとき
 
