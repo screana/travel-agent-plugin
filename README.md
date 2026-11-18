@@ -44,7 +44,7 @@
 知っておいてほしいこと：
 
 - この始め方では、相談役は**メインの会話**として動きます。メインの会話は、そのセッションにあるツールをすべて持っています。相談役の定義には「自分では Web もコネクタも使わず、調査はサブエージェントに任せる」と書いてありますが、これは**決まりであって、仕組みで止めているわけではありません。**（「安全について」を見てください。）
-- 相談役のモデルは、そのセッションのモデルです。サブエージェント（`planner`、`scout`、`inspector`、`access`）は、定義で指定したモデルで動きます。
+- 相談役のモデルは、そのセッションのモデルです。サブエージェント（`planner`、`scout`、`inspector`、`access`、`reviewer`）は、定義で指定したモデルで動きます。
 - 宿のサイトによっては、クラウドの環境からページを取得できないことがあります。「読めなかった」が続くサイトがあれば、教えてください。
 - 保存したデータは、リポジトリの中の `.travel-agent/` に置かれます。環境が作り直されると消えます（「保存するデータと、消し方」）。
 
@@ -101,8 +101,9 @@ claude --agent travel-agent:concierge
 | 役割 | モデル | すること |
 |---|---|---|
 | `concierge`（相談役） | Opus | 会話、調査役の呼び出しと受け渡し、保存、表示（調べない、計算しない） |
-| `planner` | Sonnet | `scout` の候補から宿を選び、日ごとの流れ、移動、総額を組む（宿は探さない） |
+| `planner` | Sonnet | `scout` の候補から宿を選び、日ごとの流れ、移動、総額を組む。深掘りのあと、総額を計算し直す（宿は探さない） |
 | `scout` | Opus | 選ばれた地域で、条件に合う宿の候補を集める |
+| `reviewer` | Sonnet | 条件と調査の結果を読んで、条件の見直しどころを指摘する（多くても3件。調べない） |
 | `inspector` | Opus | 選ばれた案の宿を、予約前に確かめる |
 | `access` | Sonnet | 交通を調べる |
 
@@ -179,7 +180,7 @@ claude --agent travel-agent:concierge
 - **コネクタ**：`/mcp` に trivago と Booking.com が出ているか。そこに表示されるツールの名前は何か。
 - **サブエージェントがコネクタを使えたか**：調査のあとで「scout が返した `tools_used` を見せて」と頼むと確かめられます。`trivago` が入っていなければ、ツールの名前が合っていません（「宿検索のコネクタ」の最後の項目）。
 - **`--agent` で起動したとき、サブエージェントが Web の検索・取得とコネクタを使えるか**：相談役がそれらを持たない起動の仕方なので、サブエージェントが受け継げるかを確かめる必要があります。
-- **`--agent` で起動したとき、相談役が `planner`・`scout`・`inspector`・`access` 以外のサブエージェントを呼べないようになっているか。**
+- **`--agent` で起動したとき、相談役が `planner`・`scout`・`inspector`・`access`・`reviewer` 以外のサブエージェントを呼べないようになっているか。**
 - **相談役が、自分で Web の検索やコネクタを呼んでいないか**（とくに `/travel-start` で始めたとき）。呼んでいたら、定義の書き方を直す必要があります。
 - **レポート**：`/travel-report` で書いたレポートが、会話を見ていない人にも読めるか。事実に出典の番号が付き、見立てに根拠が付いているか。
 - **表示の形**：【条件】→【候補】→【推定と提案】の順になっているか。最初の質問が多すぎないか。
@@ -203,6 +204,7 @@ plugins/travel-agent/               plugin の本体（こちらが正）
   agents/concierge.md               相談役（ハブ）
   agents/planner.md                 1つの地域で、旅行プランを1案作る
   agents/scout.md                   宿を浅く集める
+  agents/reviewer.md                条件の見直しどころを指摘する
   agents/inspector.md               宿を1軒ずつ調べる
   agents/access.md                  交通を調べる
   skills/start/SKILL.md             通常のセッションから始める入口
@@ -210,7 +212,7 @@ plugins/travel-agent/               plugin の本体（こちらが正）
   skills/report/SKILL.md            短い提案（レポート）を書く手順
   hooks/hooks.json                  調査役の開始時に、いまの時刻を渡す（取得時刻の記録のため）
 .claude/                            クラウド用のコピー（生成物。直接は編集しない）
-  agents/{concierge,planner,scout,inspector,access}.md
+  agents/{concierge,planner,scout,inspector,access,reviewer}.md
   skills/travel-start/SKILL.md
   skills/travel-reset/SKILL.md
   skills/travel-report/SKILL.md
